@@ -1,15 +1,7 @@
 package com.brodygaudel.demo.util.implementation;
 
-import com.brodygaudel.demo.dto.CategoryDTO;
-import com.brodygaudel.demo.dto.CustomerDTO;
-import com.brodygaudel.demo.dto.ProductDTO;
-import com.brodygaudel.demo.dto.UserDTO;
-import com.brodygaudel.demo.dto.WebsiteDTO;
-import com.brodygaudel.demo.entity.Category;
-import com.brodygaudel.demo.entity.Customer;
-import com.brodygaudel.demo.entity.Product;
-import com.brodygaudel.demo.entity.User;
-import com.brodygaudel.demo.entity.Website;
+import com.brodygaudel.demo.dto.*;
+import com.brodygaudel.demo.entity.*;
 import com.brodygaudel.demo.util.Mappers;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -183,5 +175,148 @@ public class MappersImpl implements Mappers {
     @Override
     public List<UserDTO> fromListOfUsers(@NotNull List<User> users) {
         return users.stream().map(this::fromUser).toList();
+    }
+
+    @Override
+    public Invoice fromInvoiceDTO(@NotNull InvoiceDTO invoiceDTO) {
+        return Invoice.builder()
+                .id(invoiceDTO.id())
+                .companyName(invoiceDTO.companyName())
+                .customerEmail(invoiceDTO.customerEmail())
+                .createdAt(invoiceDTO.createdAt())
+                .invoiceNo(invoiceDTO.invoiceNo())
+                .price(invoiceDTO.price())
+                .currency(invoiceDTO.currency())
+                .status(Invoice.Status.valueOf(invoiceDTO.status()))
+                .deletedAt(invoiceDTO.deletedAt())
+                .build();
+    }
+
+    @Override
+    public InvoiceDTO fromInvoice(@NotNull Invoice invoice) {
+        return new InvoiceDTO(
+                invoice.getId(),
+                invoice.getCompanyName(),
+                invoice.getCustomerEmail(),
+                invoice.getCreatedAt(),
+                invoice.getInvoiceNo(),
+                invoice.getPrice(),
+                invoice.getCurrency(),
+                invoice.getStatus().name(),
+                invoice.getDeletedAt()
+        );
+    }
+
+    @Override
+    public List<InvoiceDTO> fromListOfInvoices(@NotNull List<Invoice> invoices) {
+        return invoices.stream().map(this::fromInvoice).toList();
+    }
+
+    @Override
+    public Payment fromPaymentDTO(@NotNull PaymentDTO paymentDTO) {
+        return Payment.builder()
+                .id(paymentDTO.id())
+                .createdAt(paymentDTO.createdAt())
+                .updatedAt(paymentDTO.updatedAt())
+                .amount(paymentDTO.amount())
+                .currency(paymentDTO.currency())
+                .status(Payment.Status.valueOf(paymentDTO.status()))
+                .cancellationTime(paymentDTO.cancellationTime())
+                .cancellationReason(paymentDTO.cancellationReason())
+                .build();
+    }
+
+    @Override
+    public PaymentDTO fromPayment(@NotNull Payment payment) {
+        return new PaymentDTO(
+                payment.getId(),
+                payment.getCreatedAt(),
+                payment.getUpdatedAt(),
+                payment.getAmount(),
+                payment.getCurrency(),
+                payment.getStatus().name(),
+                payment.getCancellationTime(),
+                payment.getCancellationReason()
+        );
+    }
+
+    @Override
+    public List<PaymentDTO> fromListOfPayments(@NotNull List<Payment> payments) {
+        return payments.stream().map(this::fromPayment).toList();
+    }
+
+    @Override
+    public PricePlan fromPricePlanDTO(@NotNull PricePlanDTO pricePlanDTO) {
+        return PricePlan.builder()
+                .id(pricePlanDTO.id())
+                .planName(pricePlanDTO.planName())
+                .planDescription(pricePlanDTO.planDescription())
+                .status(pricePlanDTO.status())
+                .defaultPlan(pricePlanDTO.defaultPlan())
+                .freePlan(pricePlanDTO.freePlan())
+                .type(pricePlanDTO.type())
+                .dateAdded(pricePlanDTO.dateAdded())
+                .priceMonthly(pricePlanDTO.priceMonthly())
+                .priceAnnually(pricePlanDTO.priceAnnually())
+                .unlimitedChat(pricePlanDTO.unlimitedChat())
+                .numberOfChats(pricePlanDTO.numberOfChats())
+                .extraChatAmount(pricePlanDTO.extraChatAmount())
+                .unlimitedChatHistoryStorage(pricePlanDTO.unlimitedChatHistoryStorage())
+                .chatHistoryDurationDays(pricePlanDTO.chatHistoryDurationDays())
+                .costPerExtraDayOfStorage(pricePlanDTO.costPerExtraDayOfStorage())
+                .unlimitedUsers(pricePlanDTO.unlimitedUsers())
+                .numberOfUsers(pricePlanDTO.numberOfUsers())
+                .extraUserCost(pricePlanDTO.extraUserCost())
+                .numberOfWebsites(pricePlanDTO.numberOfWebsites())
+                .extraWebsiteCost(pricePlanDTO.extraWebsiteCost())
+                .chatTakeover(pricePlanDTO.chatTakeover())
+                .chatTagging(pricePlanDTO.chatTagging())
+                .chatTranscript(pricePlanDTO.chatTranscript())
+                .chatbotOpenaiIncluded(pricePlanDTO.chatbotOpenaiIncluded())
+                .managedAccount(pricePlanDTO.managedAccount())
+                .customPlan(pricePlanDTO.customPlan())
+                .createdAt(pricePlanDTO.createdAt())
+                .updatedAt(pricePlanDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public PricePlanDTO fromPricePlan(@NotNull PricePlan pricePlan) {
+        return new PricePlanDTO(
+                pricePlan.getId(),
+                pricePlan.getPlanName(),
+                pricePlan.getPlanDescription(),
+                pricePlan.getStatus(),
+                pricePlan.getDefaultPlan(),
+                pricePlan.getFreePlan(),
+                pricePlan.getType(),
+                pricePlan.getDateAdded(),
+                pricePlan.getPriceMonthly(),
+                pricePlan.getPriceAnnually(),
+                pricePlan.getUnlimitedChat(),
+                pricePlan.getNumberOfChats(),
+                pricePlan.getExtraChatAmount(),
+                pricePlan.getUnlimitedChatHistoryStorage(),
+                pricePlan.getChatHistoryDurationDays(),
+                pricePlan.getCostPerExtraDayOfStorage(),
+                pricePlan.getUnlimitedUsers(),
+                pricePlan.getNumberOfUsers(),
+                pricePlan.getExtraUserCost(),
+                pricePlan.getNumberOfWebsites(),
+                pricePlan.getExtraWebsiteCost(),
+                pricePlan.getChatTakeover(),
+                pricePlan.getChatTagging(),
+                pricePlan.getChatTranscript(),
+                pricePlan.getChatbotOpenaiIncluded(),
+                pricePlan.getManagedAccount(),
+                pricePlan.getCustomPlan(),
+                pricePlan.getCreatedAt(),
+                pricePlan.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<PricePlanDTO> fromListOfPricePlans(@NotNull List<PricePlan> pricePlans) {
+        return pricePlans.stream().map(this::fromPricePlan).toList();
     }
 }
