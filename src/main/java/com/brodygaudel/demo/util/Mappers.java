@@ -1,7 +1,10 @@
 package com.brodygaudel.demo.util;
 
 import com.brodygaudel.demo.dto.*;
+import com.brodygaudel.demo.dto.settings.*;
 import com.brodygaudel.demo.entity.*;
+import com.brodygaudel.demo.entity.settings.*;
+
 import java.util.List;
 
 public interface Mappers {
@@ -29,4 +32,59 @@ public interface Mappers {
     PricePlan fromPricePlanDTO(PricePlanDTO pricePlanDTO);
     PricePlanDTO fromPricePlan(PricePlan pricePlan);
     List<PricePlanDTO> fromListOfPricePlans(List<PricePlan> pricePlans);
+    Announcement fromAnnouncementDTO(AnnouncementDTO announcementDTO);
+    AnnouncementDTO fromAnnouncement(Announcement announcement);
+    List<AnnouncementDTO> fromListOfAnnouncements(List<Announcement> announcements);
+    DefaultAvatar fromDefaultAvatarDTO(DefaultAvatarDTO defaultAvatarDTO);
+    DefaultAvatarDTO fromDefaultAvatar(DefaultAvatar defaultAvatar);
+    List<DefaultAvatarDTO> fromListOfDefaultAvatars(List<DefaultAvatar> defaultAvatars);
+    AvatarTemplate fromAvatarTemplateDTO(AvatarTemplateDTO avatarTemplateDTO);
+    AvatarTemplateDTO fromAvatarTemplate(AvatarTemplate avatarTemplate);
+    List<AvatarTemplateDTO> fromListOfAvatarTemplates(List<AvatarTemplate> avatarTemplates);
+    Greeting fromGreetingDTO(GreetingDTO greetingDTO);
+    GreetingDTO fromGreeting(Greeting greeting);
+    List<GreetingDTO> fromListOfGreetings(List<Greeting> greetings);
+    Translation fromTranslationDTO(TranslationDTO translationDTO);
+    TranslationDTO fromTranslation(Translation translation);
+    List<TranslationDTO> fromListOfTranslations(List<Translation> translations);
+    EyeCatcher fromEyeCatcherDTO(EyeCatcherDTO eyeCatcherDTO);
+    EyeCatcherDTO fromEyeCatcher(EyeCatcher eyeCatcher);
+    List<EyeCatcherDTO> fromListOfEyeCatchers(List<EyeCatcher> eyeCatchers);
+    // InactivityTimeout mappings
+    InactivityTimeout fromInactivityTimeoutDTO(InactivityTimeoutDTO inactivityTimeoutDTO);
+    InactivityTimeoutDTO fromInactivityTimeout(InactivityTimeout inactivityTimeout);
+    List<InactivityTimeoutDTO> fromListOfInactivityTimeouts(List<InactivityTimeout> inactivityTimeouts);
+
+    // QueuedMessage mappings
+    QueuedMessage fromQueuedMessageDTO(QueuedMessageDTO queuedMessageDTO);
+    QueuedMessageDTO fromQueuedMessage(QueuedMessage queuedMessage);
+    List<QueuedMessageDTO> fromListOfQueuedMessages(List<QueuedMessage> queuedMessages);
+
+    // SmartResponse mappings
+    SmartResponse fromSmartResponseDTO(SmartResponseDTO smartResponseDTO);
+    SmartResponseDTO fromSmartResponse(SmartResponse smartResponse);
+    List<SmartResponseDTO> fromListOfSmartResponses(List<SmartResponse> smartResponses);
+
+    
+
+    // Tag mappings
+    Tag fromTagDTO(TagDTO tagDTO);
+    TagDTO fromTag(Tag tag);
+    List<TagDTO> fromListOfTags(List<Tag> tags);
+
+    // Webhook mappings
+    Webhook fromWebhookDTO(WebhookDTO webhookDTO);
+    WebhookDTO fromWebhook(Webhook webhook);
+    List<WebhookDTO> fromListOfWebhooks(List<Webhook> webhooks);
+
+   
+    // GlobalWebhook mappings
+    GlobalWebhook fromGlobalWebhookDTO(GlobalWebhookDTO globalWebhookDTO);
+    GlobalWebhookDTO fromGlobalWebhook(GlobalWebhook globalWebhook);
+    List<GlobalWebhookDTO> fromListOfGlobalWebhooks(List<GlobalWebhook> globalWebhooks);
+
+    // Integration mappings
+    Integration fromIntegrationDTO(IntegrationDTO integrationDTO);
+    IntegrationDTO fromIntegration(Integration integration);
+    List<IntegrationDTO> fromListOfIntegrations(List<Integration> integrations);
 }
