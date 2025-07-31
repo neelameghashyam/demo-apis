@@ -664,41 +664,6 @@ public class Mappersimpl implements Mappers {
    
 
     @Override
-    public Webhook fromWebhookDTO(@NotNull WebhookDTO webhookDTO) {
-        return Webhook.builder()
-                .id(webhookDTO.id())
-                .event(Webhook.Event.valueOf(webhookDTO.event()))
-                .targetUrl(webhookDTO.targetUrl())
-                .createdBy(webhookDTO.createdBy())
-                .company(webhookDTO.company())
-                .createdAt(webhookDTO.createdAt())
-                .updatedAt(webhookDTO.updatedAt())
-                .dataTypes(webhookDTO.dataTypes())
-                .build();
-    }
-
-    @Override
-    public WebhookDTO fromWebhook(@NotNull Webhook webhook) {
-        return new WebhookDTO(
-                webhook.getId(),
-                webhook.getUser() != null ? webhook.getUser().getId() : null,
-                webhook.getEvent().name(),
-                webhook.getTargetUrl(),
-                webhook.getCreatedBy(),
-                webhook.getCompany(),
-                webhook.getCreatedAt(),
-                webhook.getUpdatedAt(),
-                webhook.getDataTypes()
-        );
-    }
-
-    @Override
-    public List<WebhookDTO> fromListOfWebhooks(@NotNull List<Webhook> webhooks) {
-        return webhooks.stream().map(this::fromWebhook).toList();
-    }
-
-
-    @Override
     public GlobalWebhook fromGlobalWebhookDTO(@NotNull GlobalWebhookDTO globalWebhookDTO) {
         return GlobalWebhook.builder()
                 .id(globalWebhookDTO.id())

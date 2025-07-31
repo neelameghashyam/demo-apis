@@ -72,11 +72,7 @@ public interface Mappers {
     TagDTO fromTag(Tag tag);
     List<TagDTO> fromListOfTags(List<Tag> tags);
 
-    // Webhook mappings
-    Webhook fromWebhookDTO(WebhookDTO webhookDTO);
-    WebhookDTO fromWebhook(Webhook webhook);
-    List<WebhookDTO> fromListOfWebhooks(List<Webhook> webhooks);
-
+    
    
     // GlobalWebhook mappings
     GlobalWebhook fromGlobalWebhookDTO(GlobalWebhookDTO globalWebhookDTO);
