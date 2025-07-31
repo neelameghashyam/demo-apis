@@ -56,9 +56,7 @@ public interface Mappers {
     QueuedMessage fromQueuedMessageDTO(QueuedMessageDTO queuedMessageDTO);
     QueuedMessageDTO fromQueuedMessage(QueuedMessage queuedMessage);
     List<QueuedMessageDTO> fromListOfQueuedMessages(List<QueuedMessage> queuedMessages);
-    SmartResponse fromSmartResponseDTO(SmartResponseDTO smartResponseDTO);
-    SmartResponseDTO fromSmartResponse(SmartResponse smartResponse);
-    List<SmartResponseDTO> fromListOfSmartResponses(List<SmartResponse> smartResponses);
+   
     Tag fromTagDTO(TagDTO tagDTO);
     TagDTO fromTag(Tag tag);
     List<TagDTO> fromListOfTags(List<Tag> tags);
@@ -68,12 +66,7 @@ public interface Mappers {
     Integration fromIntegrationDTO(IntegrationDTO integrationDTO);
     IntegrationDTO fromIntegration(Integration integration);
     List<IntegrationDTO> fromListOfIntegrations(List<Integration> integrations);
-    Webhook fromWebhookDTO(WebhookDTO webhookDTO);
-    WebhookDTO fromWebhook(Webhook webhook);
-    List<WebhookDTO> fromListOfWebhooks(List<Webhook> webhooks);
-    WebhookDataType fromWebhookDataTypeDTO(WebhookDataTypeDTO webhookDataTypeDTO);
-    WebhookDataTypeDTO fromWebhookDataType(WebhookDataType webhookDataType);
-    List<WebhookDataTypeDTO> fromListOfWebhookDataTypes(List<WebhookDataType> webhookDataTypes);
+   
     Template fromTemplateDTO(TemplateDTO templateDTO);
     TemplateDTO fromTemplate(Template template);
     List<TemplateDTO> fromListOfTemplates(List<Template> templates);

@@ -591,44 +591,6 @@ public class Mappersimpl implements Mappers {
     }
 
     @Override
-    public SmartResponse fromSmartResponseDTO(@NotNull SmartResponseDTO smartResponseDTO) {
-        return SmartResponse.builder()
-                .id(smartResponseDTO.id())
-                .response(smartResponseDTO.response())
-                .createdBy(smartResponseDTO.createdBy())
-                .company(smartResponseDTO.company())
-                .createdAt(smartResponseDTO.createdAt())
-                .updatedAt(smartResponseDTO.updatedAt())
-                .build();
-    }
-
-    @Override
-    public SmartResponseDTO fromSmartResponse(@NotNull SmartResponse smartResponse) {
-        List<String> shortcuts = smartResponse.getShortcuts() != null
-                ? smartResponse.getShortcuts().stream().map(SmartResponseShortcut::getShortcut).collect(Collectors.toList())
-                : null;
-        List<String> websites = smartResponse.getWebsites() != null
-                ? smartResponse.getWebsites().stream().map(SmartResponseWebsite::getWebsite).collect(Collectors.toList())
-                : null;
-        return new SmartResponseDTO(
-                smartResponse.getId(),
-                smartResponse.getUser() != null ? smartResponse.getUser().getId() : null,
-                smartResponse.getResponse(),
-                smartResponse.getCreatedBy(),
-                smartResponse.getCompany(),
-                smartResponse.getCreatedAt(),
-                smartResponse.getUpdatedAt(),
-                shortcuts,
-                websites
-        );
-    }
-
-    @Override
-    public List<SmartResponseDTO> fromListOfSmartResponses(@NotNull List<SmartResponse> smartResponses) {
-        return smartResponses.stream().map(this::fromSmartResponse).toList();
-    }
-
-    @Override
     public Tag fromTagDTO(@NotNull TagDTO tagDTO) {
         return Tag.builder()
                 .id(tagDTO.id())
@@ -730,64 +692,7 @@ public class Mappersimpl implements Mappers {
         return integrations.stream().map(this::fromIntegration).toList();
     }
 
-    @Override
-    public Webhook fromWebhookDTO(@NotNull WebhookDTO webhookDTO) {
-        return Webhook.builder()
-                .id(webhookDTO.id())
-                .event(Webhook.Event.valueOf(webhookDTO.event()))
-                .targetUrl(webhookDTO.targetUrl())
-                .createdBy(webhookDTO.createdBy())
-                .company(webhookDTO.company())
-                .createdAt(webhookDTO.createdAt())
-                .updatedAt(webhookDTO.updatedAt())
-                .build();
-    }
-
-    @Override
-    public WebhookDTO fromWebhook(@NotNull Webhook webhook) {
-        List<String> dataTypes = webhook.getDataTypes() != null
-                ? webhook.getDataTypes().stream().map(wdt -> wdt.getDataType().name()).collect(Collectors.toList())
-                : null;
-        return new WebhookDTO(
-                webhook.getId(),
-                webhook.getUser() != null ? webhook.getUser().getId() : null,
-                webhook.getEvent().name(),
-                webhook.getTargetUrl(),
-                webhook.getCreatedBy(),
-                webhook.getCompany(),
-                webhook.getCreatedAt(),
-                webhook.getUpdatedAt(),
-                dataTypes
-        );
-    }
-
-    @Override
-    public List<WebhookDTO> fromListOfWebhooks(@NotNull List<Webhook> webhooks) {
-        return webhooks.stream().map(this::fromWebhook).toList();
-    }
-
-    @Override
-    public WebhookDataType fromWebhookDataTypeDTO(@NotNull WebhookDataTypeDTO webhookDataTypeDTO) {
-        return WebhookDataType.builder()
-                .id(webhookDataTypeDTO.id())
-                .dataType(WebhookDataType.DataType.valueOf(webhookDataTypeDTO.dataType()))
-                .build();
-    }
-
-    @Override
-    public WebhookDataTypeDTO fromWebhookDataType(@NotNull WebhookDataType webhookDataType) {
-        return new WebhookDataTypeDTO(
-                webhookDataType.getId(),
-                webhookDataType.getWebhook().getId(),
-                webhookDataType.getDataType().name()
-        );
-    }
-
-    @Override
-    public List<WebhookDataTypeDTO> fromListOfWebhookDataTypes(@NotNull List<WebhookDataType> webhookDataTypes) {
-        return webhookDataTypes.stream().map(this::fromWebhookDataType).toList();
-    }
-
+   
     @Override
     public Template fromTemplateDTO(@NotNull TemplateDTO templateDTO) {
         return Template.builder()
