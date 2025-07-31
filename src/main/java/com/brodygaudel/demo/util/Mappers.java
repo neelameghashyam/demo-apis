@@ -50,37 +50,49 @@ public interface Mappers {
     EyeCatcher fromEyeCatcherDTO(EyeCatcherDTO eyeCatcherDTO);
     EyeCatcherDTO fromEyeCatcher(EyeCatcher eyeCatcher);
     List<EyeCatcherDTO> fromListOfEyeCatchers(List<EyeCatcher> eyeCatchers);
-    // InactivityTimeout mappings
     InactivityTimeout fromInactivityTimeoutDTO(InactivityTimeoutDTO inactivityTimeoutDTO);
     InactivityTimeoutDTO fromInactivityTimeout(InactivityTimeout inactivityTimeout);
     List<InactivityTimeoutDTO> fromListOfInactivityTimeouts(List<InactivityTimeout> inactivityTimeouts);
-
-    // QueuedMessage mappings
     QueuedMessage fromQueuedMessageDTO(QueuedMessageDTO queuedMessageDTO);
     QueuedMessageDTO fromQueuedMessage(QueuedMessage queuedMessage);
     List<QueuedMessageDTO> fromListOfQueuedMessages(List<QueuedMessage> queuedMessages);
-
-    // SmartResponse mappings
     SmartResponse fromSmartResponseDTO(SmartResponseDTO smartResponseDTO);
     SmartResponseDTO fromSmartResponse(SmartResponse smartResponse);
     List<SmartResponseDTO> fromListOfSmartResponses(List<SmartResponse> smartResponses);
-
-    
-
-    // Tag mappings
     Tag fromTagDTO(TagDTO tagDTO);
     TagDTO fromTag(Tag tag);
     List<TagDTO> fromListOfTags(List<Tag> tags);
-
-    
-   
-    // GlobalWebhook mappings
     GlobalWebhook fromGlobalWebhookDTO(GlobalWebhookDTO globalWebhookDTO);
     GlobalWebhookDTO fromGlobalWebhook(GlobalWebhook globalWebhook);
     List<GlobalWebhookDTO> fromListOfGlobalWebhooks(List<GlobalWebhook> globalWebhooks);
-
-    // Integration mappings
     Integration fromIntegrationDTO(IntegrationDTO integrationDTO);
     IntegrationDTO fromIntegration(Integration integration);
     List<IntegrationDTO> fromListOfIntegrations(List<Integration> integrations);
+    Webhook fromWebhookDTO(WebhookDTO webhookDTO);
+    WebhookDTO fromWebhook(Webhook webhook);
+    List<WebhookDTO> fromListOfWebhooks(List<Webhook> webhooks);
+    WebhookDataType fromWebhookDataTypeDTO(WebhookDataTypeDTO webhookDataTypeDTO);
+    WebhookDataTypeDTO fromWebhookDataType(WebhookDataType webhookDataType);
+    List<WebhookDataTypeDTO> fromListOfWebhookDataTypes(List<WebhookDataType> webhookDataTypes);
+    Template fromTemplateDTO(TemplateDTO templateDTO);
+    TemplateDTO fromTemplate(Template template);
+    List<TemplateDTO> fromListOfTemplates(List<Template> templates);
+    GlobalNotification fromGlobalNotificationDTO(GlobalNotificationDTO globalNotificationDTO);
+    GlobalNotificationDTO fromGlobalNotification(GlobalNotification globalNotification);
+    List<GlobalNotificationDTO> fromListOfGlobalNotifications(List<GlobalNotification> globalNotifications);
+    MailTemplate fromMailTemplateDTO(MailTemplateDTO mailTemplateDTO);
+    MailTemplateDTO fromMailTemplate(MailTemplate mailTemplate);
+    List<MailTemplateDTO> fromListOfMailTemplates(List<MailTemplate> mailTemplates);
+    IpAddress fromIpAddressDTO(IpAddressDTO ipAddressDTO);
+    IpAddressDTO fromIpAddress(IpAddress ipAddress);
+    List<IpAddressDTO> fromListOfIpAddresses(List<IpAddress> ipAddresses);
+    RolePermission fromRolePermissionDTO(RolePermissionDTO rolePermissionDTO);
+    RolePermissionDTO fromRolePermission(RolePermission rolePermission);
+    List<RolePermissionDTO> fromListOfRolePermissions(List<RolePermission> rolePermissions);
+    KnowledgeBase fromKnowledgeBaseDTO(KnowledgeBaseDTO knowledgeBaseDTO);
+    KnowledgeBaseDTO fromKnowledgeBase(KnowledgeBase knowledgeBase);
+    List<KnowledgeBaseDTO> fromListOfKnowledgeBases(List<KnowledgeBase> knowledgeBases);
+    KnowledgeBaseWebsite fromKnowledgeBaseWebsiteDTO(KnowledgeBaseWebsiteDTO knowledgeBaseWebsiteDTO);
+    KnowledgeBaseWebsiteDTO fromKnowledgeBaseWebsite(KnowledgeBaseWebsite knowledgeBaseWebsite);
+    List<KnowledgeBaseWebsiteDTO> fromListOfKnowledgeBaseWebsites(List<KnowledgeBaseWebsite> knowledgeBaseWebsites);
 }

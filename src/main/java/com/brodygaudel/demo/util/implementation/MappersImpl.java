@@ -628,7 +628,6 @@ public class Mappersimpl implements Mappers {
         return smartResponses.stream().map(this::fromSmartResponse).toList();
     }
 
-    
     @Override
     public Tag fromTagDTO(@NotNull TagDTO tagDTO) {
         return Tag.builder()
@@ -660,8 +659,6 @@ public class Mappersimpl implements Mappers {
     public List<TagDTO> fromListOfTags(@NotNull List<Tag> tags) {
         return tags.stream().map(this::fromTag).toList();
     }
-
-   
 
     @Override
     public GlobalWebhook fromGlobalWebhookDTO(@NotNull GlobalWebhookDTO globalWebhookDTO) {
@@ -731,5 +728,269 @@ public class Mappersimpl implements Mappers {
     @Override
     public List<IntegrationDTO> fromListOfIntegrations(@NotNull List<Integration> integrations) {
         return integrations.stream().map(this::fromIntegration).toList();
+    }
+
+    @Override
+    public Webhook fromWebhookDTO(@NotNull WebhookDTO webhookDTO) {
+        return Webhook.builder()
+                .id(webhookDTO.id())
+                .event(Webhook.Event.valueOf(webhookDTO.event()))
+                .targetUrl(webhookDTO.targetUrl())
+                .createdBy(webhookDTO.createdBy())
+                .company(webhookDTO.company())
+                .createdAt(webhookDTO.createdAt())
+                .updatedAt(webhookDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public WebhookDTO fromWebhook(@NotNull Webhook webhook) {
+        List<String> dataTypes = webhook.getDataTypes() != null
+                ? webhook.getDataTypes().stream().map(wdt -> wdt.getDataType().name()).collect(Collectors.toList())
+                : null;
+        return new WebhookDTO(
+                webhook.getId(),
+                webhook.getUser() != null ? webhook.getUser().getId() : null,
+                webhook.getEvent().name(),
+                webhook.getTargetUrl(),
+                webhook.getCreatedBy(),
+                webhook.getCompany(),
+                webhook.getCreatedAt(),
+                webhook.getUpdatedAt(),
+                dataTypes
+        );
+    }
+
+    @Override
+    public List<WebhookDTO> fromListOfWebhooks(@NotNull List<Webhook> webhooks) {
+        return webhooks.stream().map(this::fromWebhook).toList();
+    }
+
+    @Override
+    public WebhookDataType fromWebhookDataTypeDTO(@NotNull WebhookDataTypeDTO webhookDataTypeDTO) {
+        return WebhookDataType.builder()
+                .id(webhookDataTypeDTO.id())
+                .dataType(WebhookDataType.DataType.valueOf(webhookDataTypeDTO.dataType()))
+                .build();
+    }
+
+    @Override
+    public WebhookDataTypeDTO fromWebhookDataType(@NotNull WebhookDataType webhookDataType) {
+        return new WebhookDataTypeDTO(
+                webhookDataType.getId(),
+                webhookDataType.getWebhook().getId(),
+                webhookDataType.getDataType().name()
+        );
+    }
+
+    @Override
+    public List<WebhookDataTypeDTO> fromListOfWebhookDataTypes(@NotNull List<WebhookDataType> webhookDataTypes) {
+        return webhookDataTypes.stream().map(this::fromWebhookDataType).toList();
+    }
+
+    @Override
+    public Template fromTemplateDTO(@NotNull TemplateDTO templateDTO) {
+        return Template.builder()
+                .id(templateDTO.id())
+                .businessCategory(templateDTO.businessCategory())
+                .businessSubcategory(templateDTO.businessSubcategory())
+                .createdBy(templateDTO.createdBy())
+                .createdAt(templateDTO.createdAt())
+                .updatedAt(templateDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public TemplateDTO fromTemplate(@NotNull Template template) {
+        return new TemplateDTO(
+                template.getId(),
+                template.getUser() != null ? template.getUser().getId() : null,
+                template.getBusinessCategory(),
+                template.getBusinessSubcategory(),
+                template.getCreatedBy(),
+                template.getCreatedAt(),
+                template.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<TemplateDTO> fromListOfTemplates(@NotNull List<Template> templates) {
+        return templates.stream().map(this::fromTemplate).toList();
+    }
+
+    @Override
+    public GlobalNotification fromGlobalNotificationDTO(@NotNull GlobalNotificationDTO globalNotificationDTO) {
+        return GlobalNotification.builder()
+                .id(globalNotificationDTO.id())
+                .useSameEmail(globalNotificationDTO.useSameEmail())
+                .notificationsEmail(globalNotificationDTO.notificationsEmail())
+                .notifyLead(globalNotificationDTO.notifyLead())
+                .notifyServiceChat(globalNotificationDTO.notifyServiceChat())
+                .createdAt(globalNotificationDTO.createdAt())
+                .updatedAt(globalNotificationDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public GlobalNotificationDTO fromGlobalNotification(@NotNull GlobalNotification globalNotification) {
+        return new GlobalNotificationDTO(
+                globalNotification.getId(),
+                globalNotification.getUser() != null ? globalNotification.getUser().getId() : null,
+                globalNotification.getUseSameEmail(),
+                globalNotification.getNotificationsEmail(),
+                globalNotification.getNotifyLead(),
+                globalNotification.getNotifyServiceChat(),
+                globalNotification.getCreatedAt(),
+                globalNotification.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<GlobalNotificationDTO> fromListOfGlobalNotifications(@NotNull List<GlobalNotification> globalNotifications) {
+        return globalNotifications.stream().map(this::fromGlobalNotification).toList();
+    }
+
+    @Override
+    public MailTemplate fromMailTemplateDTO(@NotNull MailTemplateDTO mailTemplateDTO) {
+        return MailTemplate.builder()
+                .id(mailTemplateDTO.id())
+                .name(mailTemplateDTO.name())
+                .useCase(mailTemplateDTO.useCase())
+                .subject(mailTemplateDTO.subject())
+                .active(mailTemplateDTO.active())
+                .createdBy(mailTemplateDTO.createdBy())
+                .createdAt(mailTemplateDTO.createdAt())
+                .modifiedBy(mailTemplateDTO.modifiedBy())
+                .modifiedAt(mailTemplateDTO.modifiedAt())
+                .build();
+    }
+
+    @Override
+    public MailTemplateDTO fromMailTemplate(@NotNull MailTemplate mailTemplate) {
+        return new MailTemplateDTO(
+                mailTemplate.getId(),
+                mailTemplate.getUser() != null ? mailTemplate.getUser().getId() : null,
+                mailTemplate.getName(),
+                mailTemplate.getUseCase(),
+                mailTemplate.getSubject(),
+                mailTemplate.getActive(),
+                mailTemplate.getCreatedBy(),
+                mailTemplate.getCreatedAt(),
+                mailTemplate.getModifiedBy(),
+                mailTemplate.getModifiedAt()
+        );
+    }
+
+    @Override
+    public List<MailTemplateDTO> fromListOfMailTemplates(@NotNull List<MailTemplate> mailTemplates) {
+        return mailTemplates.stream().map(this::fromMailTemplate).toList();
+    }
+
+    @Override
+    public IpAddress fromIpAddressDTO(@NotNull IpAddressDTO ipAddressDTO) {
+        return IpAddress.builder()
+                .id(ipAddressDTO.id())
+                .ipAddress(ipAddressDTO.ipAddress())
+                .createdAt(ipAddressDTO.createdAt())
+                .updatedAt(ipAddressDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public IpAddressDTO fromIpAddress(@NotNull IpAddress ipAddress) {
+        return new IpAddressDTO(
+                ipAddress.getId(),
+                ipAddress.getUser() != null ? ipAddress.getUser().getId() : null,
+                ipAddress.getIpAddress(),
+                ipAddress.getCreatedAt(),
+                ipAddress.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<IpAddressDTO> fromListOfIpAddresses(@NotNull List<IpAddress> ipAddresses) {
+        return ipAddresses.stream().map(this::fromIpAddress).toList();
+    }
+
+    @Override
+    public RolePermission fromRolePermissionDTO(@NotNull RolePermissionDTO rolePermissionDTO) {
+        return RolePermission.builder()
+                .id(rolePermissionDTO.id())
+                .userRole(rolePermissionDTO.userRole())
+                .createdAt(rolePermissionDTO.createdAt())
+                .updatedAt(rolePermissionDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public RolePermissionDTO fromRolePermission(@NotNull RolePermission rolePermission) {
+        return new RolePermissionDTO(
+                rolePermission.getId(),
+                rolePermission.getUser() != null ? rolePermission.getUser().getId() : null,
+                rolePermission.getUserRole(),
+                rolePermission.getCreatedAt(),
+                rolePermission.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<RolePermissionDTO> fromListOfRolePermissions(@NotNull List<RolePermission> rolePermissions) {
+        return rolePermissions.stream().map(this::fromRolePermission).toList();
+    }
+
+    @Override
+    public KnowledgeBase fromKnowledgeBaseDTO(@NotNull KnowledgeBaseDTO knowledgeBaseDTO) {
+        return KnowledgeBase.builder()
+                .id(knowledgeBaseDTO.id())
+                .questionTitle(knowledgeBaseDTO.questionTitle())
+                .answerInformation(knowledgeBaseDTO.answerInformation())
+                .keywords(knowledgeBaseDTO.keywords())
+                .createdAt(knowledgeBaseDTO.createdAt())
+                .updatedAt(knowledgeBaseDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public KnowledgeBaseDTO fromKnowledgeBase(@NotNull KnowledgeBase knowledgeBase) {
+        List<String> websites = knowledgeBase.getWebsites() != null
+                ? knowledgeBase.getWebsites().stream().map(KnowledgeBaseWebsite::getWebsite).collect(Collectors.toList())
+                : null;
+        return new KnowledgeBaseDTO(
+                knowledgeBase.getId(),
+                knowledgeBase.getUser() != null ? knowledgeBase.getUser().getId() : null,
+                knowledgeBase.getQuestionTitle(),
+                knowledgeBase.getAnswerInformation(),
+                knowledgeBase.getKeywords(),
+                knowledgeBase.getCreatedAt(),
+                knowledgeBase.getUpdatedAt(),
+                websites
+        );
+    }
+
+    @Override
+    public List<KnowledgeBaseDTO> fromListOfKnowledgeBases(@NotNull List<KnowledgeBase> knowledgeBases) {
+        return knowledgeBases.stream().map(this::fromKnowledgeBase).toList();
+    }
+
+    @Override
+    public KnowledgeBaseWebsite fromKnowledgeBaseWebsiteDTO(@NotNull KnowledgeBaseWebsiteDTO knowledgeBaseWebsiteDTO) {
+        return KnowledgeBaseWebsite.builder()
+                .id(knowledgeBaseWebsiteDTO.id())
+                .website(knowledgeBaseWebsiteDTO.website())
+                .build();
+    }
+
+    @Override
+    public KnowledgeBaseWebsiteDTO fromKnowledgeBaseWebsite(@NotNull KnowledgeBaseWebsite knowledgeBaseWebsite) {
+        return new KnowledgeBaseWebsiteDTO(
+                knowledgeBaseWebsite.getId(),
+                knowledgeBaseWebsite.getKnowledgeBase().getId(),
+                knowledgeBaseWebsite.getWebsite()
+        );
+    }
+
+    @Override
+    public List<KnowledgeBaseWebsiteDTO> fromListOfKnowledgeBaseWebsites(@NotNull List<KnowledgeBaseWebsite> knowledgeBaseWebsites) {
+        return knowledgeBaseWebsites.stream().map(this::fromKnowledgeBaseWebsite).toList();
     }
 }
