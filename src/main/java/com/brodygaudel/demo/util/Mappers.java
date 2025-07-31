@@ -82,10 +82,5 @@ public interface Mappers {
     RolePermission fromRolePermissionDTO(RolePermissionDTO rolePermissionDTO);
     RolePermissionDTO fromRolePermission(RolePermission rolePermission);
     List<RolePermissionDTO> fromListOfRolePermissions(List<RolePermission> rolePermissions);
-    KnowledgeBase fromKnowledgeBaseDTO(KnowledgeBaseDTO knowledgeBaseDTO);
-    KnowledgeBaseDTO fromKnowledgeBase(KnowledgeBase knowledgeBase);
-    List<KnowledgeBaseDTO> fromListOfKnowledgeBases(List<KnowledgeBase> knowledgeBases);
-    KnowledgeBaseWebsite fromKnowledgeBaseWebsiteDTO(KnowledgeBaseWebsiteDTO knowledgeBaseWebsiteDTO);
-    KnowledgeBaseWebsiteDTO fromKnowledgeBaseWebsite(KnowledgeBaseWebsite knowledgeBaseWebsite);
-    List<KnowledgeBaseWebsiteDTO> fromListOfKnowledgeBaseWebsites(List<KnowledgeBaseWebsite> knowledgeBaseWebsites);
+    
 }

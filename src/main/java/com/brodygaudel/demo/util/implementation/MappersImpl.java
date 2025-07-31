@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 @Component
 public class Mappersimpl implements Mappers {
 
@@ -843,59 +844,5 @@ public class Mappersimpl implements Mappers {
         return rolePermissions.stream().map(this::fromRolePermission).toList();
     }
 
-    @Override
-    public KnowledgeBase fromKnowledgeBaseDTO(@NotNull KnowledgeBaseDTO knowledgeBaseDTO) {
-        return KnowledgeBase.builder()
-                .id(knowledgeBaseDTO.id())
-                .questionTitle(knowledgeBaseDTO.questionTitle())
-                .answerInformation(knowledgeBaseDTO.answerInformation())
-                .keywords(knowledgeBaseDTO.keywords())
-                .createdAt(knowledgeBaseDTO.createdAt())
-                .updatedAt(knowledgeBaseDTO.updatedAt())
-                .build();
-    }
-
-    @Override
-    public KnowledgeBaseDTO fromKnowledgeBase(@NotNull KnowledgeBase knowledgeBase) {
-        List<String> websites = knowledgeBase.getWebsites() != null
-                ? knowledgeBase.getWebsites().stream().map(KnowledgeBaseWebsite::getWebsite).collect(Collectors.toList())
-                : null;
-        return new KnowledgeBaseDTO(
-                knowledgeBase.getId(),
-                knowledgeBase.getUser() != null ? knowledgeBase.getUser().getId() : null,
-                knowledgeBase.getQuestionTitle(),
-                knowledgeBase.getAnswerInformation(),
-                knowledgeBase.getKeywords(),
-                knowledgeBase.getCreatedAt(),
-                knowledgeBase.getUpdatedAt(),
-                websites
-        );
-    }
-
-    @Override
-    public List<KnowledgeBaseDTO> fromListOfKnowledgeBases(@NotNull List<KnowledgeBase> knowledgeBases) {
-        return knowledgeBases.stream().map(this::fromKnowledgeBase).toList();
-    }
-
-    @Override
-    public KnowledgeBaseWebsite fromKnowledgeBaseWebsiteDTO(@NotNull KnowledgeBaseWebsiteDTO knowledgeBaseWebsiteDTO) {
-        return KnowledgeBaseWebsite.builder()
-                .id(knowledgeBaseWebsiteDTO.id())
-                .website(knowledgeBaseWebsiteDTO.website())
-                .build();
-    }
-
-    @Override
-    public KnowledgeBaseWebsiteDTO fromKnowledgeBaseWebsite(@NotNull KnowledgeBaseWebsite knowledgeBaseWebsite) {
-        return new KnowledgeBaseWebsiteDTO(
-                knowledgeBaseWebsite.getId(),
-                knowledgeBaseWebsite.getKnowledgeBase().getId(),
-                knowledgeBaseWebsite.getWebsite()
-        );
-    }
-
-    @Override
-    public List<KnowledgeBaseWebsiteDTO> fromListOfKnowledgeBaseWebsites(@NotNull List<KnowledgeBaseWebsite> knowledgeBaseWebsites) {
-        return knowledgeBaseWebsites.stream().map(this::fromKnowledgeBaseWebsite).toList();
-    }
+   
 }
