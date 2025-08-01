@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @Component
-public class Mappersimpl implements Mappers {
+public class MappersImpl implements Mappers {
 
     @Override
     public ProductDTO fromProduct(@NotNull Product product) {
@@ -842,6 +842,109 @@ public class Mappersimpl implements Mappers {
     @Override
     public List<RolePermissionDTO> fromListOfRolePermissions(@NotNull List<RolePermission> rolePermissions) {
         return rolePermissions.stream().map(this::fromRolePermission).toList();
+    }
+
+        @Override
+    public Webhook fromWebhookDTO(@NotNull WebhookDTO webhookDTO) {
+        return Webhook.builder()
+                .id(webhookDTO.id())
+                .userId(webhookDTO.userId())
+                .event(Webhook.Event.valueOf(webhookDTO.event()))
+                .dataTypes(webhookDTO.dataTypes())
+                .targetUrl(webhookDTO.targetUrl())
+                .createdBy(webhookDTO.createdBy())
+                .company(webhookDTO.company())
+                .createdAt(webhookDTO.createdAt())
+                .updatedAt(webhookDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public WebhookDTO fromWebhook(@NotNull Webhook webhook) {
+        return new WebhookDTO(
+                webhook.getId(),
+                webhook.getUserId(),
+                webhook.getEvent().name(),
+                webhook.getDataTypes(),
+                webhook.getTargetUrl(),
+                webhook.getCreatedBy(),
+                webhook.getCompany(),
+                webhook.getCreatedAt(),
+                webhook.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<WebhookDTO> fromListOfWebhooks(@NotNull List<Webhook> webhooks) {
+        return webhooks.stream().map(this::fromWebhook).toList();
+    }
+
+    @Override
+    public SmartResponse fromSmartResponseDTO(@NotNull SmartResponseDTO smartResponseDTO) {
+        return SmartResponse.builder()
+                .id(smartResponseDTO.id())
+                .userId(smartResponseDTO.userId())
+                .response(smartResponseDTO.response())
+                .shortcuts(smartResponseDTO.shortcuts())
+                .websites(smartResponseDTO.websites())
+                .createdBy(smartResponseDTO.createdBy())
+                .company(smartResponseDTO.company())
+                .createdAt(smartResponseDTO.createdAt())
+                .updatedAt(smartResponseDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public SmartResponseDTO fromSmartResponse(@NotNull SmartResponse smartResponse) {
+        return new SmartResponseDTO(
+                smartResponse.getId(),
+                smartResponse.getUserId(),
+                smartResponse.getResponse(),
+                smartResponse.getShortcuts(),
+                smartResponse.getWebsites(),
+                smartResponse.getCreatedBy(),
+                smartResponse.getCompany(),
+                smartResponse.getCreatedAt(),
+                smartResponse.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<SmartResponseDTO> fromListOfSmartResponses(@NotNull List<SmartResponse> smartResponses) {
+        return smartResponses.stream().map(this::fromSmartResponse).toList();
+    }
+
+    @Override
+    public KnowledgeBase fromKnowledgeBaseDTO(@NotNull KnowledgeBaseDTO knowledgeBaseDTO) {
+        return KnowledgeBase.builder()
+                .id(knowledgeBaseDTO.id())
+                .userId(knowledgeBaseDTO.userId())
+                .questionTitle(knowledgeBaseDTO.questionTitle())
+                .answerInformation(knowledgeBaseDTO.answerInformation())
+                .keywords(knowledgeBaseDTO.keywords())
+                .websites(knowledgeBaseDTO.websites())
+                .createdAt(knowledgeBaseDTO.createdAt())
+                .updatedAt(knowledgeBaseDTO.updatedAt())
+                .build();
+    }
+
+    @Override
+    public KnowledgeBaseDTO fromKnowledgeBase(@NotNull KnowledgeBase knowledgeBase) {
+        return new KnowledgeBaseDTO(
+                knowledgeBase.getId(),
+                knowledgeBase.getUserId(),
+                knowledgeBase.getQuestionTitle(),
+                knowledgeBase.getAnswerInformation(),
+                knowledgeBase.getKeywords(),
+                knowledgeBase.getWebsites(),
+                knowledgeBase.getCreatedAt(),
+                knowledgeBase.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public List<KnowledgeBaseDTO> fromListOfKnowledgeBases(@NotNull List<KnowledgeBase> knowledgeBases) {
+        return knowledgeBases.stream().map(this::fromKnowledgeBase).toList();
     }
 
    

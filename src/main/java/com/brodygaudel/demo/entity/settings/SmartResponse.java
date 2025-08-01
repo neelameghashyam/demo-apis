@@ -10,34 +10,39 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "knowledge_base")
+@Table(name = "smart_responses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class KnowledgeBase {
+public class SmartResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "knowledge_base_id")
+    @Column(name = "smart_response_id")
     private Long id;
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "question_title", nullable = false, columnDefinition = "TEXT")
-    private String questionTitle;
-
-    @Column(name = "answer_information", nullable = false, columnDefinition = "TEXT")
-    private String answerInformation;
-
-    @Column(name = "keywords", nullable = false, columnDefinition = "TEXT")
-    private String keywords;
+    @Column(name = "response", nullable = false, columnDefinition = "TEXT")
+    private String response;
 
     @ElementCollection
-    @CollectionTable(name = "knowledge_base_websites", joinColumns = @JoinColumn(name = "knowledge_base_id"))
+    @CollectionTable(name = "smart_response_shortcuts", joinColumns = @JoinColumn(name = "smart_response_id"))
+    @Column(name = "shortcut")
+    private List<String> shortcuts;
+
+    @ElementCollection
+    @CollectionTable(name = "smart_response_websites", joinColumns = @JoinColumn(name = "smart_response_id"))
     @Column(name = "website")
     private List<String> websites;
+
+    @Column(name = "created_by", nullable = false)
+    private String createdBy;
+
+    @Column(name = "company", nullable = false)
+    private String company;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
